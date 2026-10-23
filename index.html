@@ -150,11 +150,11 @@ video{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
     else { b.removeAttribute("href"); b.textContent = "Em breve na App Store"; b.classList.add("soon"); }
     $("offer").hidden = false;
   }
-  $("offerClose").addEventListener("click", () => { $("offer").hidden = true; });
-  $("offer").addEventListener("click", e => { if(e.target === $("offer")) $("offer").hidden = true; });
 
   const $ = id => document.getElementById(id);
   const canvas = $("view"), video = $("cam"), gate = $("gate"), err = $("err"), hint = $("hint");
+  $("offerClose").addEventListener("click", () => { $("offer").hidden = true; });
+  $("offer").addEventListener("click", e => { if(e.target === $("offer")) $("offer").hidden = true; });
   let gl, isGL2, prog, texVideo, texLUT, uMix, uFlip, uLUT, uVideo, uSlice;
   let current = -1, mix = 1, flipX = false, facing = "user", stream = null, source = null, raf = 0;
   let lutBytes = null;
