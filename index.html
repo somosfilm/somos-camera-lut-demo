@@ -334,9 +334,10 @@ video{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
   $("start").addEventListener("click", () => boot(true));
   $("noCam").addEventListener("click", () => boot(false));
   // atalho: #carta abre direto na carta de cores; #carta-3 escolhe o look 3; -debug põe os cinzas lidos no título
-  const hm = /^#carta(?:-(\d+))?(-debug)?$/.exec(location.hash);
+  const hm = /^#carta(?:-(\d+))?(-debug)?(-offer)?$/.exec(location.hash);
   if(hm) boot(false).then(() => {
     if(hm[1] !== undefined) select(parseInt(hm[1], 10));
+    if(hm[3]) showOffer();
     if(hm[2]) setTimeout(() => {
       const px = new Uint8Array(4), out = [];
       for(let i=0;i<12;i++){ gl.readPixels(Math.round((i+0.5)*canvas.width/12), Math.round(canvas.height - 400*canvas.height/720), 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, px); out.push([px[0],px[1],px[2]]); }
