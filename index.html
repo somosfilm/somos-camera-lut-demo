@@ -324,7 +324,9 @@ video{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
       gate.hidden = true;
       { const a = $("cta"); a.href = GO_URL; a.innerHTML = APP_URL ? "<em>Baixar</em> o app" : "<em>Em breve</em> na App Store · ver detalhes"; a.hidden = false; }
       let saved = -1; try { saved = parseInt(localStorage.getItem("somos-look") ?? "-1", 10); } catch(e){}
-      select(Number.isInteger(saved) && saved >= -1 && saved < LOOKS.length && saved !== -1 ? saved : 0);
+      // #look-3 (vindo da página do app) abre direto no look 3
+      const lk = /^#look-(\d+)$/.exec(location.hash); const want = lk ? parseInt(lk[1], 10) - 1 : -1;
+      select(want >= 0 && want < LOOKS.length ? want : (Number.isInteger(saved) && saved >= 0 && saved < LOOKS.length ? saved : 0));
       if(!raf) frame();
       hint.classList.add("show"); setTimeout(() => hint.classList.remove("show"), 3500);
     } catch(e){
